@@ -1,0 +1,22 @@
+<ips:template parameters="$title, $records" />
+{{if count($records) > 0}}
+{{if !empty($title)}}<h3 class='ipsType_reset ipsWidget_title'>{$title}</h3>{{endif}}
+<div class="ipsWidget_inner ipsPad">
+<ul class="ipsDataList ipsDataList_reducedSpacing">
+{{foreach $records as $record}}
+
+{{$attach = \IPS\File::get('core_Attachment', $record['attach_file']);}}
+{{$topic = \IPS\forums\Topic\Post::load($record['id2']);}}
+
+<li class="ipsDataItem" style="word-break: break-all;">
+<p>
+<div><a href="{$topic->url()}">{$attach->originalFilename}</a></div>
+<div><span class="ipsType_light"><i class="fa fa-clock-o"></i> {datetime="$record['attach_date']"}&nbsp;&nbsp;&nbsp;<i class="fa fa-download"></i> {$record['attach_hits']}</span></div>
+</p>
+</li>
+
+
+{{endforeach}}
+</ul>
+</div>
+{{endif}}

@@ -1,0 +1,8 @@
+<ips:template parameters="$tab" />
+{{if \IPS\Member::loggedIn()->inGroup(explode(',', \IPS\Settings::i()->m357_customgroupname_who_can_edit))}}
+	<li role='presentation'>
+		<a href='{url="app=core&module=system&controller=settings&area=customgroupname" seoTemplate="settings_customgroupname"}' id='setting_customgroupname' class='ipsType_normal ipsSideMenu_item {{if $tab === 'customgroupname'}}ipsSideMenu_itemActive{{endif}}' title="{lang="m357_customgroupname"}" role="tab" aria-selected="false">
+			<i class="fa fa-user-plus"> </i>{lang="m357_customgroupname"}
+		</a>
+	</li>
+{{endif}}

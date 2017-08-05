@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin name="[M357] Custom Group Name" version_long="10000" version_human="1.0.0" author="Magnum357" website="" update_check=""><hooks><hook type="S" class="\IPS\Theme\class_core_front_profile" filename="edithovarcard"><![CDATA[//<?php
+
+/* To prevent PHP errors (extending class does not exist) revealing path */
+if ( !defined( '\IPS\SUITE_UNIQUE_KEY' ) )
+{
+	exit;
+}
+
+class hook65 extends _HOOK_CLASS_
+{
+
+/* !Hook Data - DO NOT REMOVE */
+public static function hookData() {
+ return array_merge_recursive( array (
+  'hovercard' => 
+  array (
+    0 => 
+    array (
+      'selector' => 'div.ipsPad_half.cUserHovercard > div.ipsPageHead_special > p.ipsType_reset.ipsType_normal > span.ipsPageHead_barText_small',
+      'type' => 'replace',
+      'content' => '<span class="ipsPageHead_barText_small">
+{template="customgroupname" group="plugins" location="global" app="core" params="$member, true"}
+</span>',
+    ),
+  ),
+), parent::hookData() );
+}
+/* End Hook Data */
+
+
+}
+]]></hook><hook type="S" class="\IPS\Theme\class_core_front_profile" filename="editprofile"><![CDATA[//<?php
+
+/* To prevent PHP errors (extending class does not exist) revealing path */
+if ( !defined( '\IPS\SUITE_UNIQUE_KEY' ) )
+{
+	exit;
+}
+
+class hook66 extends _HOOK_CLASS_
+{
+
+/* !Hook Data - DO NOT REMOVE */
+public static function hookData() {
+ return array_merge_recursive( array (
+  'profileHeader' => 
+  array (
+    0 => 
+    array (
+      'selector' => '#elProfileHeader > div.ipsColumns.ipsColumns_collapsePhone > div.ipsColumn.ipsColumn_fluid > div.ipsPos_left.ipsPad.cProfileHeader_name.ipsType_normal > span > span.ipsPageHead_barText',
+      'type' => 'replace',
+      'content' => '<span class="ipsPageHead_barText">
+{template="customgroupname" group="plugins" location="global" app="core" params="$member, true"}
+</span>',
+    ),
+  ),
+), parent::hookData() );
+}
+/* End Hook Data */
+
+
+}
+]]></hook><hook type="C" class="\IPS\core\extensions\core\MemberForm\Profile" filename="newProfileSetting"><![CDATA[//<?php
+
+/* To prevent PHP errors (extending class does not exist) revealing path */
+if ( !defined( '\IPS\SUITE_UNIQUE_KEY' ) )
+{
+	exit;
+}
+
+class hook84 extends _HOOK_CLASS_
+{
+
+	/**
+	 * Process Form
+	 *
+	 * @param	\IPS\Helpers\Form		$form	The form
+	 * @param	\IPS\Member				$member	Existing Member
+	 * @return	void
+	 */
+	public function process( &$form, $member )
+	{
+		try
+		{
+	      	$form->addHeader('m357_custom_group_name_profile_header');
+	      	$form->add( new \IPS\Helpers\Form\Text( 'm357_custom_group_name', $member->m357_custom_group_name ) );
+	      	parent::process($form, $member);
+			
+		}
+		catch ( \RuntimeException $e )
+		{
+			if ( method_exists( get_parent_class(), __FUNCTION__ ) )
+			{
+				return call_user_func_array( 'parent::' . __FUNCTION__, func_get_args() );
+			}
+			else
+			{
+				throw $e;
+			}
+		}
+	}  
+  
+	/**
+	 * Save
+	 *
+	 * @param	array				$values	Values from form
+	 * @param	\IPS\Member			$member	The member
+	 * @return	void
+	 */
+	public function save( $values, &$member )
+	{
+		try
+		{
+	      	parent::save($values, $member);
+			$member->m357_custom_group_name = $values['m357_custom_group_name'];
+		}
+		catch ( \RuntimeException $e )
+		{
+			if ( method_exists( get_parent_class(), __FUNCTION__ ) )
+			{
+				return call_user_func_array( 'parent::' . __FUNCTION__, func_get_args() );
+			}
+			else
+			{
+				throw $e;
+			}
+		}
+	}
+
+}
+]]></hook><hook type="S" class="\IPS\Theme\class_forums_front_topics" filename="editpost"><![CDATA[//<?php
+
+/* To prevent PHP errors (extending class does not exist) revealing path */
+if ( !defined( '\IPS\SUITE_UNIQUE_KEY' ) )
+{
+	exit;
+}
+
+class hook85 extends _HOOK_CLASS_
+{
+
+/* !Hook Data - DO NOT REMOVE */
+public static function hookData() {
+ return array_merge_recursive( array (
+  'postContainer' => 
+  array (
+    0 => 
+    array (
+      'selector' => 'article > aside.ipsComment_author.cAuthorPane.ipsColumn.ipsColumn_medium.ipsResponsive_hidePhone > ul.cAuthorPane_info.ipsList_reset > li.cAuthorPane_photo + li',
+      'type' => 'replace',
+      'content' => '<li>{template="customgroupname" group="plugins" location="global" app="core" params="$comment->author(), false"}</li>',
+    ),
+  ),
+), parent::hookData() );
+}
+/* End Hook Data */
+
+
+}
+]]></hook><hook type="S" class="\IPS\Theme\class_core_front_popular" filename="editleaderboard"><![CDATA[//<?php
+
+/* To prevent PHP errors (extending class does not exist) revealing path */
+if ( !defined( '\IPS\SUITE_UNIQUE_KEY' ) )
+{
+	exit;
+}
+
+class hook89 extends _HOOK_CLASS_
+{
+
+/* !Hook Data - DO NOT REMOVE */
+public static function hookData() {
+ return array_merge_recursive( array (
+  'memberRow' => 
+  array (
+    0 => 
+    array (
+      'selector' => 'li.ipsGrid_span3.ipsStreamItem.ipsStreamItem_contentBlock.cTopMembers_member.ipsAreaBackground_reset.ipsPad.ipsType_center > div.ipsStreamItem_container > div.ipsStreamItem_header.ipsSpacer_top.ipsSpacer_half > p.ipsType_reset.ipsType_medium',
+      'type' => 'replace',
+      'content' => '<p class="ipsType_reset ipsType_medium">{template="customgroupname" group="plugins" location="global" app="core" params="$member, false"}</p>',
+    ),
+  ),
+), parent::hookData() );
+}
+/* End Hook Data */
+
+
+}
+]]></hook></hooks><uninstall><![CDATA[//<?php
+
+/* To prevent PHP errors (extending class does not exist) revealing path */
+if ( !defined( '\IPS\SUITE_UNIQUE_KEY' ) )
+{
+	header( ( isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0' ) . ' 403 Forbidden' );
+	exit;
+}
+
+\IPS\Db::i()->dropColumn( 'core_members', 'm357_custom_group_name' );]]></uninstall><tasks/><widgets/><htmlFiles><html filename="customgroupname.phtml">PGlwczp0ZW1wbGF0ZSBwYXJhbWV0ZXJzPSIkbWVtYmVyLCAkc2hvd19ncm91cCIgLz4Ke3tpZiAkc2hvd19ncm91cCB8fCBlbXB0eSgkbWVtYmVyLT5tMzU3X2N1c3RvbV9ncm91cF9uYW1lKX19CntleHByZXNzaW9uPSJcSVBTXE1lbWJlclxHcm91cDo6bG9hZCggJG1lbWJlci0+bWVtYmVyX2dyb3VwX2lkICktPmZvcm1hdHRlZE5hbWUiIHJhdz0idHJ1ZSJ9Cnt7ZW5kaWZ9fQp7e2lmICFlbXB0eSgkbWVtYmVyLT5tMzU3X2N1c3RvbV9ncm91cF9uYW1lKX19Cnt7aWYgJHNob3dfZ3JvdXB9fSZuYnNwOyZuYnNwOzxpIGNsYXNzPSJmYSBmYS1hbmdsZS1yaWdodCI+PC9pPiZuYnNwOyZuYnNwO3t7ZW5kaWZ9fXtleHByZXNzaW9uPSIkbWVtYmVyLT5ncm91cFsncHJlZml4J10iIHJhdz0idHJ1ZSJ9eyRtZW1iZXItPm0zNTdfY3VzdG9tX2dyb3VwX25hbWV9e2V4cHJlc3Npb249IiRtZW1iZXItPmdyb3VwWydzdWZmaXgnXSIgcmF3PSJ0cnVlIn0Ke3tlbmRpZn19</html></htmlFiles><cssFiles/><jsFiles/><resourcesFiles/><lang><word key="m357_custom_group_name_profile_header" js="0">Özel grup adı</word><word key="m357_custom_group_name" js="0">Özel grup adı</word><word key="m357_custom_group_name_desc" js="0">Gerçek grup adı yerine buradaki değer görünür.</word></lang><versions><version long="10000" human="1.0.0"><![CDATA[//<?php
+
+
+/* To prevent PHP errors (extending class does not exist) revealing path */
+if ( !defined( '\IPS\SUITE_UNIQUE_KEY' ) )
+{
+	header( ( isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0' ) . ' 403 Forbidden' );
+	exit;
+}
+
+/**
+ * Install Code
+ */
+class ips_plugins_setup_install
+{
+	/**
+	 * ...
+	 *
+	 * @return	array	If returns TRUE, upgrader will proceed to next step. If it returns any other value, it will set this as the value of the 'extra' GET parameter and rerun this step (useful for loops)
+	 */
+	public function step1()
+	{
+		
+		\IPS\Db::i()->addColumn( 'core_members', array(
+			'name'		=> 'm357_custom_group_name',
+			'type'		=> 'VARCHAR',
+			'length'	=> 255,
+			'null'		=> FALSE,
+			'default'	=> '',
+		) );
+
+		return TRUE;
+	}
+	
+	// You can create as many additional methods (step2, step3, etc.) as is necessary.
+	// Each step will be executed in a new HTTP request
+}]]></version></versions></plugin>
