@@ -1,0 +1,7 @@
+<ips:template parameters="$member, $show_group" />
+{{if $show_group || empty($member->m357_custom_group_name)}}
+{expression="\IPS\Member\Group::load( $member->member_group_id )->formattedName" raw="true"}
+{{endif}}
+{{if !empty($member->m357_custom_group_name)}}
+{{if $show_group}}&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;{{endif}}{expression="$member->group['prefix']" raw="true"}{$member->m357_custom_group_name}{expression="$member->group['suffix']" raw="true"}
+{{endif}}

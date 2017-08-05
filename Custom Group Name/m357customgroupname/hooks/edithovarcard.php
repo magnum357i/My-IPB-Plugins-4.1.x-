@@ -6,7 +6,7 @@ if ( !defined( '\IPS\SUITE_UNIQUE_KEY' ) )
 	exit;
 }
 
-class hook103 extends _HOOK_CLASS_
+class hook65 extends _HOOK_CLASS_
 {
 
 /* !Hook Data - DO NOT REMOVE */
@@ -16,15 +16,11 @@ public static function hookData() {
   array (
     0 => 
     array (
-      'selector' => 'div.ipsPad_half.cUserHovercard > div.ipsPageHead_special > p.ipsType_reset.ipsType_normal',
+      'selector' => 'div.ipsPad_half.cUserHovercard > div.ipsPageHead_special > p.ipsType_reset.ipsType_normal > span.ipsPageHead_barText_small',
       'type' => 'replace',
-      'content' => '<p class="ipsType_reset ipsType_normal">
-{{if !empty($member->m357_custom_group_name)}}
-{expression="\IPS\Member\Group::load( $member->member_group_id )->formattedName" raw="true"} <i class="fa fa-angle-right"></i> {expression="$member->group[\'prefix\']" raw="true"}{$member->m357_custom_group_name}{expression="$member->group[\'suffix\']" raw="true"}
-{{else}}
-{expression="\IPS\Member\Group::load( $member->member_group_id )->formattedName" raw="true"}
-{{endif}}
-</p>',
+      'content' => '<span class="ipsPageHead_barText_small">
+{template="customgroupname" group="plugins" location="global" app="core" params="$member, true"}
+</span>',
     ),
   ),
 ), parent::hookData() );
